@@ -1,37 +1,13 @@
-/*
-|--------------------------------------------------------------------------
-| Routes file
-|--------------------------------------------------------------------------
-|
-| The routes file is used for defining the HTTP routes.
-|
-*/
-
-import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
+import GenresController from '#controllers/genres_controller'
+import MoviesController from '#controllers/movies_controller'
 import { controllers } from '#generated/controllers'
+import { middleware } from './kernel.ts'
 
-router.get('/', () => {
-  return { hello: 'world' }
-})
+router.resource('/user', controllers.Users).apiOnly()
+router.post("/session", [controllers.AccessTokens, "store"])
+router.delete("/session", [controllers.AccessTokens, "destroy"]).use(middleware.auth())
 
-router
-  .group(() => {
-    router
-      .group(() => {
-        router.post('signup', [controllers.NewAccount, 'store'])
-        router.post('login', [controllers.AccessTokens, 'store'])
-      })
-      .prefix('auth')
-      .as('auth')
+router.resource('genres', GenresController).apiOnly().use('*', middleware.auth())
 
-    router
-      .group(() => {
-        router.get('profile', [controllers.Profile, 'show'])
-        router.post('logout', [controllers.AccessTokens, 'destroy'])
-      })
-      .prefix('account')
-      .as('profile')
-      .use(middleware.auth())
-  })
-  .prefix('/api/v1')
+router.resource('movies', MoviesController).apiOnly().use('*', middleware.auth())

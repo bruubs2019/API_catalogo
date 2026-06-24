@@ -24,3 +24,14 @@ export const loginValidator = vine.create({
   email: email(),
   password: vine.string(),
 })
+
+export const createUserValidator = vine.create({
+  name: vine.string(),
+  email: vine.string().email().unique({ table: 'users', column: 'email' }),
+  password: vine.string().minLength(6),
+})
+
+export const updateUserValidator = vine.create({
+  name: vine.string(),
+  password: vine.string().minLength(6),
+})
