@@ -34,7 +34,7 @@ As exigências do projeto incluíam:
 - Git e GitHub 
 - Bruno
 ---
-## Entidadades do Sistema
+## Entidades do Sistema
 
 ### Usuário
 
@@ -54,4 +54,15 @@ Representa os filmes cadastrados no catálogo, cada um associado a um gênero.
 
 ![Filme](filme.png)
 
-**Relacionamento:** Gênero `1:N` Filmes — cada filme pertence a um gênero, e um gênero pode ter vários filmes.
+### **Relacionamento:** Gênero `1:N` Filmes — cada filme pertence a um gênero, e um gênero pode ter vários filmes.
+---
+## Regras de Negócio
+
+- Gêneros e filmes podem ser cadastrados, consultados, atualizados e removidos
+- Todo filme deve estar associado a um gênero existente
+- Não é permitido cadastrar dois filmes com o mesmo título
+- É possível filtrar filmes por gênero
+- Operações de escrita (criação, edição, exclusão) exigem autenticação
+- Listagem e consulta de filmes e gêneros são públicas
+
+---
