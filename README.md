@@ -53,6 +53,8 @@ Representa as categorias às quais os filmes pertencem.
 Representa os filmes cadastrados no catálogo, cada um associado a um gênero.
 
 ![Filme](filme.png)
+---
+![DER](catalogo.png)
 
 ### **Relacionamento:** Gênero `1:N` Filmes — cada filme pertence a um gênero, e um gênero pode ter vários filmes.
 ---
